@@ -27,7 +27,7 @@ class Critical : DetectionItem() {
     }
 
     override fun run(player: Player?, data: Any?): Boolean {
-        val e: PlayerMoveEvent = (data as PlayerMoveEvent?)!!
+        val e: PlayerMoveEvent = data as PlayerMoveEvent
         val world: World = player!!.world
         val fromX: Double = e.from!!.x
         val fromY: Double = e.from!!.y
