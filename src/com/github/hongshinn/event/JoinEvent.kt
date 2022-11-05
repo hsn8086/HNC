@@ -10,7 +10,7 @@ import org.bukkit.scheduler.BukkitRunnable
 class JoinEvent : Listener {
     @EventHandler
     fun onPlayerJoin(e: PlayerJoinEvent?) {
-        val player: Player? = e?.player
+        val player: Player = e!!.player
         object : BukkitRunnable(
         ) {
             override fun run() {}

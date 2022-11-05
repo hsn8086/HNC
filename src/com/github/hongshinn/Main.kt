@@ -64,7 +64,7 @@ class Main : JavaPlugin(), Listener {
         AntiCheatManager.registerDetectionItem(HorizontalFlight())
         AntiCheatManager.registerDetectionItem(FastFlight())
         AntiCheatManager.registerDetectionItem(HighJump())
-        AntiCheatManager.registerDetectionItem(Criticals())
+        AntiCheatManager.registerDetectionItem(Critical())
         AntiCheatManager.registerDetectionItem(OnGround())
         AntiCheatManager.registerDetectionItem(DropSpeed())
     }
@@ -75,12 +75,12 @@ class Main : JavaPlugin(), Listener {
         label: String?,
         args: Array<String?>?
     ): Boolean {
-        if ("hnc_reload".equals(cmd!!.name, ignoreCase = true) && sender!!.isOp()) {
+        if ("hnc_reload".equals(cmd!!.name, ignoreCase = true) && sender!!.isOp) {
             loadConfig()
             sender.sendMessage("Reload complete")
             return true
         }
-        return "hnc_debug".equals(cmd.name, ignoreCase = true) && sender!!.isOp()
+        return "hnc_debug".equals(cmd.name, ignoreCase = true) && sender!!.isOp
     }
 
     override fun onEnable() {

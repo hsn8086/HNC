@@ -24,21 +24,21 @@ class SafeWalk : DetectionItem() {
     }
 
     override fun run(player: Player?, data: Any?): Boolean {
-        val e: PlayerMoveEvent? = data as PlayerMoveEvent?
-        val fromX: Double = e!!.getFrom().x
-        val fromY: Double = e.getFrom().y
-        val fromZ: Double = e.getFrom().z
-        val toX: Double = e.getTo().x
-        val toY: Double = e.getTo().y
-        val toZ: Double = e.getTo().z
+        val e: PlayerMoveEvent= (data as PlayerMoveEvent)
+        val fromX: Double = e.from.x
+        val fromY: Double = e.from.y
+        val fromZ: Double = e.from.z
+        val toX: Double = e.to.x
+        val toY: Double = e.to.y
+        val toZ: Double = e.to.z
         for (i in 0..2) {
             for (i0 in 0..2) {
-                val block: Block? = e.getPlayer().world.getBlockAt(
+                val block: Block = e.player.world.getBlockAt(
                     (fromX + (i0 - 1) * 0.301).toInt(),
                     floor(fromY + 2.1).toInt(),
                     (fromZ + (i - 1) * 0.301).toInt()
                 )
-                if (block!!.isEmpty()) {
+                if (block.isEmpty) {
                     //overheadEmptyBlock++;
                 }
             }

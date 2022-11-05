@@ -8,6 +8,6 @@ import org.bukkit.event.player.PlayerQuitEvent
 class QuitEvent : Listener {
     @EventHandler
     fun onPlayerQuit(e: PlayerQuitEvent?) {
-        PlayerData.removePlayer(e!!.getPlayer())
+        PlayerData.removePlayer(e!!.player)
     }
 }

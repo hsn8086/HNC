@@ -12,7 +12,7 @@ class ClickEvent : Listener {
     @EventHandler
     fun onPlayerClick(e: PlayerInteractEvent?) {
         if (e != null) {
-            AntiCheatManager.check(e.player, e as Any?, "click")
+            AntiCheatManager.check(e.player, e as Any, "click")
         }
     }
 }

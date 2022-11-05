@@ -29,28 +29,28 @@ class OnGround : DetectionItem() {
     }
 
     override fun run(player: Player?, data: Any?): Boolean {
-        val e: PlayerMoveEvent? = data as PlayerMoveEvent?
-        val world: World? = player?.world
-        val fromX: Double? = e?.from?.x
-        val fromY: Double? = e?.from?.y
-        val fromZ: Double ? = e?.from?.z
-        val toX: Double? = e?.to?.x
-        val toZ: Double ? = e?.to?.z
-        PlayerData.onGroundCount?.putIfAbsent(player!!.getName(), 0)
-        PlayerData.onGroundCount?.compute(player!!.getName(), BiFunction<String?, Int?, Int?> compute@{ _: String?, v: Int? ->
+        val e: PlayerMoveEvent = (data as PlayerMoveEvent?)!!
+        val world: World = player!!.world
+        val fromX: Double = e.from.x
+        val fromY: Double = e.from.y
+        val fromZ: Double = e.from.z
+        val toX: Double = e.to.x
+        val toZ: Double  = e.to.z
+        PlayerData.onGroundCount.putIfAbsent(player.name, 0)
+        PlayerData.onGroundCount.compute(player.name, BiFunction<String, Int?, Int?> compute@{ _: String?, v: Int? ->
             if (v == null) {
                 return@compute 0
             } else {
                 return@compute v - 1
             }
         })
-        var emptyBlock: Int = 0
-        val range: Double = sqrt((fromX!! - toX!!).pow(2.0) + (fromZ!! - toZ!!).pow(2.0)) * 6 / 5 + 0.31
+        var emptyBlock = 0
+        val range: Double = sqrt((fromX - toX).pow(2.0) + (fromZ - toZ).pow(2.0)) * 6 / 5 + 0.31
         for (i in 0..2) {
             for (i0 in 0..2) {
-                val block: Block? = world?.getBlockAt(
+                val block: Block? = world.getBlockAt(
                     (fromX + (i0 - 1) * range).toInt(),
-                    floor(fromY!! - 0.001).toInt(),
+                    floor(fromY - 0.001).toInt(),
                     (fromZ + (i - 1) * range).toInt()
                 )
                 if (block!!.isEmpty) {
@@ -58,8 +58,8 @@ class OnGround : DetectionItem() {
                 }
             }
         }
-        if (emptyBlock == 9 && player!!.isOnGround()) {
-            PlayerData.onGroundCount?.compute(player.name, BiFunction<String?, Int?, Int?> compute@{ k: String?, v: Int? ->
+        if (emptyBlock == 9 && player.isOnGround) {
+            PlayerData.onGroundCount.compute(player.name, BiFunction<String?, Int?, Int?> compute@{ _: String?, v: Int? ->
                 if (v == null) {
                     return@compute 1
                 } else {
@@ -67,6 +67,6 @@ class OnGround : DetectionItem() {
                 }
             })
         }
-        return PlayerData.onGroundCount?.get(player!!.name)!! >= 5
+        return PlayerData.onGroundCount.get(player.name)!! >= 5
     }
 }

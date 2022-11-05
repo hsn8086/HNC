@@ -7,7 +7,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent
 class ChatEvent : Listener {
     @EventHandler
     fun onPlayerChat(e: AsyncPlayerChatEvent?) {
-        e?.player?.sendMessage(e.getMessage())
+        e!!.player.sendMessage(e.message)
 
         // double cps=Ptlm.gettagvalueint(player, "cps");
         // player.sendMessage("cps:"+Double.toString(cps*5));

@@ -32,35 +32,35 @@ class HighJump : DetectionItem() {
                 return false
             }
         }
-        var emptyBlock: Int = 0
-        val e: PlayerMoveEvent? = data as PlayerMoveEvent?
-        val world: World? = player?.world
-        val fromX: Double? = e?.from?.x
-        val fromY: Double? = e?.from?.y
-        val fromZ: Double? = e?.from?.z
-        val toY: Double? = e?.to?.y
+        var emptyBlock = 0
+        val e: PlayerMoveEvent = (data as PlayerMoveEvent?)!!
+        val world: World = player!!.world
+        val fromX: Double = e.from.x
+        val fromY: Double = e.from.y
+        val fromZ: Double = e.from.z
+        val toY: Double = e.to.y
 
         for (i in 0..2) {
             for (i0 in 0..2) {
-                val block: Block? = world?.getBlockAt(
-                    (fromX?.plus((i0 - 1) * 0.26))!!.toInt(),
-                    floor(fromY!! - 0.1).toInt(),
-                    (fromZ?.plus((i - 1) * 0.26))!!.toInt()
+                val block: Block? = world.getBlockAt(
+                    (fromX.plus((i0 - 1) * 0.26)).toInt(),
+                    floor(fromY - 0.1).toInt(),
+                    (fromZ.plus((i - 1) * 0.26)).toInt()
                 )
                 if (block!!.isEmpty) {
                     emptyBlock++
                 }
             }
         }
-        PlayerData.isJumping?.putIfAbsent(player!!.name, false)
-        if (!PlayerData.isJumping?.get(player!!.name)!! && (emptyBlock == 9) && (fromY!! - toY!! < 0)) {
-            PlayerData.isJumping!![player!!.name] = true
-            PlayerData.takeOffPosition?.set(player.name, fromY)
+        PlayerData.isJumping.putIfAbsent(player.name, false)
+        if (!PlayerData.isJumping[player.name]!! && (emptyBlock == 9) && (fromY - toY < 0)) {
+            PlayerData.isJumping[player.name] = true
+            PlayerData.takeOffPosition[player.name] = fromY
         }
-        if (fromY!! - toY!! >= 0 && PlayerData.isJumping!![player!!.name] == true) {
-            PlayerData.isJumping!![player.name] = false
-            PlayerData.takeOffPosition?.putIfAbsent(player.name, fromY)
-            val jumpHeight: Double = fromY - PlayerData.takeOffPosition?.get(player.name)!!
+        if (fromY - toY >= 0 && PlayerData.isJumping[player.name] == true) {
+            PlayerData.isJumping[player.name] = false
+            PlayerData.takeOffPosition.putIfAbsent(player.name, fromY)
+            val jumpHeight: Double = fromY - PlayerData.takeOffPosition[player.name]!!
             return jumpHeight * 100 > PluginConfig.detectionItemJumpMaxHeight
         }
         return false

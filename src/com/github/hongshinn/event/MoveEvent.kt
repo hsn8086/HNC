@@ -12,22 +12,21 @@ import kotlin.math.abs
  * @author hsn
  */
 class MoveEvent : Listener {
-    var tempHashMap: HashMap<String?, Any?>? = HashMap()
     private var determination: Boolean = false
     @EventHandler
     fun onPlayerMove(e: PlayerMoveEvent?) {
-        determination = AntiCheatManager.check(e!!.getPlayer(), e as Any?, "movement")
-        if (abs(e.getTo().x - e.getFrom().x) > 0.1 || abs(
-                e.getTo().z - e.getFrom().z
+        determination = AntiCheatManager.check(e!!.player, e as Any, "movement")
+        if (abs(e.to.x - e.from.x) > 0.1 || abs(
+                e.to.z - e.from.z
             ) > 0.1
         ) {
-            PlayerData.suspiciousLevel!!.putIfAbsent(e.getPlayer().name, 0)
-            if (PlayerData.suspiciousLevel!![e.player.name]!! > 0) {
-                PlayerData.addSuspiciousLevel(e.getPlayer(), -PluginConfig.mainSuspicionLevelDecreaseRate)
+            PlayerData.suspiciousLevel.putIfAbsent(e.player.name, 0)
+            if (PlayerData.suspiciousLevel[e.player.name]!! > 0) {
+                PlayerData.addSuspiciousLevel(e.player, -PluginConfig.mainSuspicionLevelDecreaseRate)
             }
-            if (PlayerData.suspiciousLevel!![e.getPlayer().name]!! > PluginConfig.mainSuspicionLevelBacktracking) {
+            if (PlayerData.suspiciousLevel[e.player.name]!! > PluginConfig.mainSuspicionLevelBacktracking) {
                 if (determination) {
-                    e.setCancelled(true)
+                    e.isCancelled = true
                 }
             }
         }

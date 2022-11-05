@@ -30,11 +30,13 @@ class FastFlight : DetectionItem() {
         if ((player?.gameMode == GameMode.CREATIVE)) {
             return false
         }
-        val e: PlayerMoveEvent? = data as PlayerMoveEvent?
-        val fromX: Double = e?.from?.x!!
+
+        val e: PlayerMoveEvent = (data as PlayerMoveEvent?)!!
+        val fromX: Double = e.from.x
         val fromY: Double = e.from.y
         val fromZ: Double = e.from.z
         val toY: Double = e.to.y
+
         //TODO:鞘翅
         val world: World? = player?.world
         var emptyBlock = 0
@@ -61,22 +63,22 @@ class FastFlight : DetectionItem() {
             }
         }
         if (player != null) {
-            PlayerData.isDropping?.putIfAbsent(player.name, false)
+            PlayerData.isDropping.putIfAbsent(player.name, false)
         }
         if (emptyBlock != 18) {
             if (player != null) {
-                PlayerData.isDropping?.put(player.name, false)
+                PlayerData.isDropping[player.name] = false
             }
             return false
         }
 
         //掉落过程中上升检测
         if (player != null) {
-            if (PlayerData.isDropping?.get(player.name) == true) {
+            if (PlayerData.isDropping[player.name] == true) {
                 return fromY - toY < 0
             } else {
                 if (fromY - toY > 0) {
-                    PlayerData.isDropping?.put(player.name, true)
+                    PlayerData.isDropping[player.name] = true
                 }
             }
         }
