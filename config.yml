@@ -1,0 +1,108 @@
+#########################
+#      main config      #
+#########################
+#Suspicion level decrease rate
+#嫌疑等级减少速度
+#reduce per gt
+Main.SuspicionLevel.DecreaseRate: 1
+Main.Mode: "kick"
+
+#Maximum suspicion level
+#最大嫌疑等级
+Main.SuspicionLevel.Max: 5000
+#Cancel the event from a certain level
+#从一定等级开始取消事件
+Main.SuspicionLevel.Backtracking: 2500
+
+######################
+#      movement      #
+######################
+#"DropSpeed" will determine whether the player is speeding according to the preset
+#"DropSpeed"将会按照预设判断玩家是否超速
+DetectionItem.Drop.CheckSpeed: true
+#The "maxfallspeed" will run separately from the preset, but the main switch is still the "fallingspeed"
+#"maxfallspeed"将与预设分开运行,但总开关仍是"fallingspeed"
+DetectionItem.Drop.MaxSpeed: 4.0
+
+DetectionItem.Drop.SuspicionLevel: 100
+
+
+#Maximum jump height
+#最大跳跃高度
+DetectionItem.Jump.CheckHeight: true
+DetectionItem.Jump.MaxHeight: 130
+
+DetectionItem.Jump.SuspicionLevel: 500
+
+
+#flight
+#飞行
+#Not necessarily
+#不一定能用
+DetectionItem.Flight.CheckHorizontalFlight: true
+DetectionItem.Flight.CheckFastFlight: true
+#flexible
+#空中灵活运动
+DetectionItem.Flight.CheckFlexibleFlight: true
+
+DetectionItem.Flight.SuspicionLevel: 100
+
+
+#safewalk
+#安全行走
+DetectionItem.Walk.CheckSafeWalk: true
+#liquidwalk
+#水上漂
+DetectionItem.Walk.CheckLiquidWalk: true
+
+DetectionItem.Walk.SuspicionLevel: 100
+
+
+#wallclimb
+#爬墙
+DetectionItem.Climb.CheckWallClimb: true
+DetectionItem.Climb.FastClimb: true
+
+DetectionItem.Climb.SuspicionLevel: 100
+
+
+#waterspeed
+#入水不减速
+DetectionItem.Swim.CheckWaterSpeed: true
+
+DetectionItem.Swim.SuspicionLevel: 75
+
+
+
+
+#timer
+#时间管理带尸
+DetectionItem.Time.CheckTimer: true
+DetectionItem.Time.MaxPacket: 20
+
+DetectionItem.Time.SuspicionLevel: 30
+
+
+
+
+####################
+#      combat      #
+####################
+#criticals
+#刀刀暴击
+DetectionItem.Combat.CheckCritical: true
+DetectionItem.Combat.Critical.SuspicionLevel: 100
+
+
+#reach
+#长臂猿
+DetectionItem.Combat.CheckReach: true
+DetectionItem.Combat.Reach: 3.39
+DetectionItem.Combat.Reach.SuspicionLevel: 100
+
+
+#CPS
+#攻击速度
+DetectionItem.Combat.CPS.CheckCPS: true
+DetectionItem.Combat.CPS.MaxCPS: 18
+DetectionItem.Combat.CPS.SuspicionLevel: 100

@@ -1,0 +1,16 @@
+name: HNC-RL
+main: com.github.hongshinn.Main
+version: 0.1.5-DEV-build2
+author: hsn
+description: Do not use the pictures for commercial purpose!
+depend: [ Kotlin ]
+
+commands:
+  
+  hnc_reload:
+    description: hnc_reload
+    usage: /<command>
+    
+  hnc_debug:
+    description: hnc_debug
+    usage: /<command>
