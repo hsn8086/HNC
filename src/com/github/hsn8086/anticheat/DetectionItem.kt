@@ -1,6 +1,6 @@
-package com.github.hongshinn.anticheat
+package com.github.hsn8086.anticheat
 
-import com.github.hongshinn.data.PlayerData
+import com.github.hsn8086.data.PlayerData
 import org.bukkit.entity.Player
 
 /**
@@ -48,13 +48,13 @@ open class DetectionItem {
         }
     }
 
-    open fun run(player: Player?, data: Any?): Boolean {
+    open fun run(player: Player, data: Any): Boolean {
         return false
     }
 
-    fun call(player: Player?, data: Any?): Boolean {
+    fun call(player: Player, data: Any): Boolean {
         if (isEnable) {
-            if (whiteList!!.contains(player!!.getName())) {
+            if (whiteList!!.contains(player.name)) {
                 return false
             } else {
                 if (run(player, data)) {

@@ -1,6 +1,6 @@
-package com.github.hongshinn.data
+package com.github.hsn8086.data
 
-import com.github.hongshinn.Utils
+import com.github.hsn8086.Utils
 import org.bukkit.BanList
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
@@ -15,12 +15,11 @@ object PlayerData {
     var flightTime: HashMap<String, Int> = HashMap()
     var dropTime: HashMap<String, Int> = HashMap()
     var onGroundCount: HashMap<String, Int> = HashMap()
-    var groundPosition: HashMap<String, Double> = HashMap()
+
     var takeOffPosition: HashMap<String, Double> = HashMap()
     var isDropping: HashMap<String, Boolean> = HashMap()
     var isJumping: HashMap<String, Boolean> = HashMap()
-    var cpsCount: HashMap<String, ArrayList<Long>> = HashMap()
-    var cpsRecord: HashMap<String, MutableList<Int>> = HashMap()
+
     private var banList: BanList = Bukkit.getBanList(BanList.Type.NAME)
     fun addSuspiciousLevel(player: Player?, level: Int) {
         val playerName: String = player!!.name

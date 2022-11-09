@@ -1,4 +1,4 @@
-package com.github.hongshinn.anticheat
+package com.github.hsn8086.anticheat
 
 import org.bukkit.entity.Player
 

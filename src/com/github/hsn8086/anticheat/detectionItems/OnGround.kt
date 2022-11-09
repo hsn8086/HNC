@@ -1,8 +1,8 @@
-package com.github.hongshinn.anticheat.detectionItems
+package com.github.hsn8086.anticheat.detectionItems
 
-import com.github.hongshinn.anticheat.DetectionItem
-import com.github.hongshinn.data.PlayerData
-import com.github.hongshinn.data.PluginConfig
+import com.github.hsn8086.anticheat.DetectionItem
+import com.github.hsn8086.data.PlayerData
+import com.github.hsn8086.data.PluginConfig
 import org.bukkit.World
 import org.bukkit.block.Block
 import org.bukkit.entity.Player
@@ -28,9 +28,9 @@ class OnGround : DetectionItem() {
         type = "movement"
     }
 
-    override fun run(player: Player?, data: Any?): Boolean {
+    override fun run(player: Player, data: Any): Boolean {
         val e: PlayerMoveEvent = (data as PlayerMoveEvent?)!!
-        val world: World = player!!.world
+        val world: World = player.world
         val fromX: Double = e.from.x
         val fromY: Double = e.from.y
         val fromZ: Double = e.from.z
@@ -67,6 +67,6 @@ class OnGround : DetectionItem() {
                 }
             })
         }
-        return PlayerData.onGroundCount.get(player.name)!! >= 5
+        return PlayerData.onGroundCount[player.name]!! >= 5
     }
 }

@@ -1,8 +1,8 @@
-package com.github.hongshinn.anticheat.detectionItems
+package com.github.hsn8086.anticheat.detectionItems
 
-import com.github.hongshinn.anticheat.DetectionItem
-import com.github.hongshinn.data.PlayerData
-import com.github.hongshinn.data.PluginConfig
+import com.github.hsn8086.anticheat.DetectionItem
+import com.github.hsn8086.data.PlayerData
+import com.github.hsn8086.data.PluginConfig
 import org.bukkit.GameMode
 import org.bukkit.World
 import org.bukkit.block.Block
@@ -26,8 +26,8 @@ class FastFlight : DetectionItem() {
         type = "movement"
     }
 
-    override fun run(player: Player?, data: Any?): Boolean {
-        if ((player?.gameMode == GameMode.CREATIVE)) {
+    override fun run(player: Player, data: Any): Boolean {
+        if ((player.gameMode == GameMode.CREATIVE)) {
             return false
         }
 
@@ -38,7 +38,7 @@ class FastFlight : DetectionItem() {
         val toY: Double = e.to.y
 
         //TODO:鞘翅
-        val world: World? = player?.world
+        val world: World? = player.world
         var emptyBlock = 0
         for (i in 0..2) {
             for (i0 in 0..2) {
@@ -62,18 +62,18 @@ class FastFlight : DetectionItem() {
                 }
             }
         }
-        if (player != null) {
+
             PlayerData.isDropping.putIfAbsent(player.name, false)
-        }
+
         if (emptyBlock != 18) {
-            if (player != null) {
+
                 PlayerData.isDropping[player.name] = false
-            }
+
             return false
         }
 
         //掉落过程中上升检测
-        if (player != null) {
+
             if (PlayerData.isDropping[player.name] == true) {
                 return fromY - toY < 0
             } else {
@@ -81,7 +81,7 @@ class FastFlight : DetectionItem() {
                     PlayerData.isDropping[player.name] = true
                 }
             }
-        }
+
         return false
     }
 }

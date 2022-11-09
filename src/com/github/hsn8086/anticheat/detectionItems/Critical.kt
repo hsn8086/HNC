@@ -1,8 +1,8 @@
-package com.github.hongshinn.anticheat.detectionItems
+package com.github.hsn8086.anticheat.detectionItems
 
-import com.github.hongshinn.anticheat.DetectionItem
-import com.github.hongshinn.data.PlayerData
-import com.github.hongshinn.data.PluginConfig
+import com.github.hsn8086.anticheat.DetectionItem
+
+import com.github.hsn8086.data.PluginConfig
 import org.bukkit.World
 import org.bukkit.block.Block
 import org.bukkit.entity.Player
@@ -16,6 +16,7 @@ import kotlin.math.floor
  * @since 7/14/2022 2:34 下午
  */
 class Critical : DetectionItem() {
+    private var groundPosition: HashMap<String, Double> = HashMap()
     init {
         suspicionLevel = PluginConfig.detectionItemFlightSuspicionLevel
         if (PluginConfig.detectionItemFlightCheckFastFlight) {
@@ -26,7 +27,7 @@ class Critical : DetectionItem() {
         type = "movement"
     }
 
-    override fun run(player: Player?, data: Any?): Boolean {
+    override fun run(player: Player, data: Any): Boolean {
         val e: PlayerMoveEvent = data as PlayerMoveEvent
         val world: World = player!!.world
         val fromX: Double = e.from!!.x
@@ -81,14 +82,14 @@ class Critical : DetectionItem() {
 
             }
         }
-        PlayerData.groundPosition.putIfAbsent(player.name, fromY)
+        groundPosition.putIfAbsent(player.name, fromY)
         if (emptyBlock == 0 && bodyEmptyBlock == 9) {
-            PlayerData.groundPosition[player.name] = fromY
+            groundPosition[player.name] = fromY
         }
-        var jumpHeight: Double = fromY - PlayerData.groundPosition[player.name]!!
+        var jumpHeight: Double = fromY - groundPosition[player.name]!!
         if (jumpHeight < 0) {
 
-            PlayerData.groundPosition[player.name] = fromY
+            groundPosition[player.name] = fromY
 
             jumpHeight = 0.0
         }

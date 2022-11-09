@@ -1,6 +1,4 @@
-package com.github.hongshinn.data
-
-import org.bukkit.plugin.java.JavaPlugin
+package com.github.hsn8086.data
 
 /**
  * @author hsn

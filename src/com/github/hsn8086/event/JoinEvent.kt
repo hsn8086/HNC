@@ -1,4 +1,4 @@
-package com.github.hongshinn.event
+package com.github.hsn8086.event
 
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler

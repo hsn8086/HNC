@@ -1,9 +1,10 @@
-package com.github.hongshinn
+package com.github.hsn8086
 
-import com.github.hongshinn.anticheat.AntiCheatManager
-import com.github.hongshinn.anticheat.detectionItems.*
-import com.github.hongshinn.data.PluginConfig
-import com.github.hongshinn.event.*
+
+import com.github.hsn8086.anticheat.AntiCheatManager
+import com.github.hsn8086.anticheat.detectionItems.*
+import com.github.hsn8086.data.PluginConfig
+import com.github.hsn8086.event.*
 import org.bukkit.Bukkit
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
@@ -67,6 +68,7 @@ class Main : JavaPlugin(), Listener {
         AntiCheatManager.registerDetectionItem(Critical())
         AntiCheatManager.registerDetectionItem(OnGround())
         AntiCheatManager.registerDetectionItem(DropSpeed())
+        //AntiCheatManager.registerDetectionItem(SafeWalk())
     }
 
     override fun onCommand(

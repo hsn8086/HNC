@@ -20,8 +20,8 @@ Main.SuspicionLevel.Backtracking: 2500
 #"DropSpeed" will determine whether the player is speeding according to the preset
 #"DropSpeed"将会按照预设判断玩家是否超速
 DetectionItem.Drop.CheckSpeed: true
-#The "maxfallspeed" will run separately from the preset, but the main switch is still the "fallingspeed"
-#"maxfallspeed"将与预设分开运行,但总开关仍是"fallingspeed"
+#The "max fall speed" will run separately from the preset, but the main switch is still the "falling speed"
+#"max fall speed"将与预设分开运行,但总开关仍是"falling speed"
 DetectionItem.Drop.MaxSpeed: 4.0
 
 DetectionItem.Drop.SuspicionLevel: 100

@@ -1,8 +1,8 @@
-package com.github.hongshinn.anticheat.detectionItems
+package com.github.hsn8086.anticheat.detectionItems
 
-import com.github.hongshinn.anticheat.DetectionItem
-import com.github.hongshinn.data.PlayerData
-import com.github.hongshinn.data.PluginConfig
+import com.github.hsn8086.anticheat.DetectionItem
+import com.github.hsn8086.data.PlayerData
+import com.github.hsn8086.data.PluginConfig
 import org.bukkit.GameMode
 import org.bukkit.World
 import org.bukkit.block.Block
@@ -27,8 +27,8 @@ class HorizontalFlight : DetectionItem() {
         type = "movement"
     }
 
-    override fun run(player: Player?, data: Any?): Boolean {
-        if ((player!!.gameMode == GameMode.CREATIVE)) {
+    override fun run(player: Player, data: Any): Boolean {
+        if (player.gameMode == GameMode.CREATIVE) {
             return false
         }
         val e: PlayerMoveEvent = (data as PlayerMoveEvent?)!!

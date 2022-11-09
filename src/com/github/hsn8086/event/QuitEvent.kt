@@ -1,6 +1,6 @@
-package com.github.hongshinn.event
+package com.github.hsn8086.event
 
-import com.github.hongshinn.data.PlayerData
+import com.github.hsn8086.data.PlayerData
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerQuitEvent

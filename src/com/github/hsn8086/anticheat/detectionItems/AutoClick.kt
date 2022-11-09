@@ -1,8 +1,7 @@
-package com.github.hongshinn.anticheat.detectionItems
+package com.github.hsn8086.anticheat.detectionItems
 
-import com.github.hongshinn.anticheat.DetectionItem
-import com.github.hongshinn.data.PlayerData
-import com.github.hongshinn.data.PluginConfig
+import com.github.hsn8086.anticheat.DetectionItem
+import com.github.hsn8086.data.PluginConfig
 import org.bukkit.entity.Player
 import java.util.function.Consumer
 import kotlin.math.max
@@ -13,6 +12,8 @@ import kotlin.math.max
  * @since 22-07-13 7:23
  */
 class AutoClick : DetectionItem() {
+    private var cpsCount: HashMap<String, ArrayList<Long>> = HashMap()
+    private var cpsRecord: HashMap<String, MutableList<Int>> = HashMap()
     init {
         suspicionLevel = PluginConfig.detectionItemFlightSuspicionLevel
         if (PluginConfig.detectionItemFlightCheckFastFlight) {
@@ -23,13 +24,13 @@ class AutoClick : DetectionItem() {
         type = "click"
     }
 
-    override fun run(player: Player?, data: Any?): Boolean {
+    override fun run(player: Player, data: Any): Boolean {
 
-        PlayerData.cpsCount.putIfAbsent(player!!.name, ArrayList())
+        cpsCount.putIfAbsent(player.name, ArrayList())
 
         val nowTime: Long = System.currentTimeMillis()
 
-        PlayerData.cpsCount.computeIfPresent(player.name) { _: String, v: ArrayList<Long> ->
+        cpsCount.computeIfPresent(player.name) { _: String, v: ArrayList<Long> ->
             val removeList: ArrayList<Long> = ArrayList()
             v.forEach(Consumer { a: Long ->
 
@@ -44,12 +45,12 @@ class AutoClick : DetectionItem() {
             v
         }
 
-        val cps: Int = PlayerData.cpsCount[player.name]!!.size
+        val cps: Int = cpsCount[player.name]!!.size
 
-        PlayerData.cpsRecord.putIfAbsent(player.name, ArrayList())
+        cpsRecord.putIfAbsent(player.name, ArrayList())
 
 
-        PlayerData.cpsRecord.computeIfPresent(player.name) { _: String, v: MutableList<Int> ->
+        cpsRecord.computeIfPresent(player.name) { _: String, v: MutableList<Int> ->
             v.add(cps)
 
             val v2 = v.subList(max(0, v.size - 20), v.size)
@@ -58,7 +59,7 @@ class AutoClick : DetectionItem() {
         }
 
 
-        return cps / (PlayerData.cpsRecord[player.name]!!.size + 0.75) > PluginConfig.detectionItemCombatMaxCPS
+        return cps / (cpsRecord[player.name]!!.size + 0.75) > PluginConfig.detectionItemCombatMaxCPS
 
     }
 }

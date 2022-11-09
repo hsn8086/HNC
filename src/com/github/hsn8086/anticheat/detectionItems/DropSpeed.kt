@@ -1,8 +1,8 @@
-package com.github.hongshinn.anticheat.detectionItems
+package com.github.hsn8086.anticheat.detectionItems
 
-import com.github.hongshinn.anticheat.DetectionItem
-import com.github.hongshinn.data.PlayerData
-import com.github.hongshinn.data.PluginConfig
+import com.github.hsn8086.anticheat.DetectionItem
+import com.github.hsn8086.data.PlayerData
+import com.github.hsn8086.data.PluginConfig
 import org.bukkit.entity.Player
 import org.bukkit.event.player.PlayerMoveEvent
 import java.util.function.BiFunction
@@ -23,12 +23,12 @@ class DropSpeed : DetectionItem() {
         type = "movement"
     }
 
-    override fun run(player: Player?, data: Any?): Boolean {
-        val e: PlayerMoveEvent? = data as PlayerMoveEvent?
-        val fromY: Double = e!!.from.y
+    override fun run(player: Player, data: Any): Boolean {
+        val e: PlayerMoveEvent = data as PlayerMoveEvent
+        val fromY: Double = e.from.y
         val toY: Double = e.to.y
         val speed: Double = toY - fromY
-        PlayerData.isDropping.putIfAbsent(player!!.name, false)
+        PlayerData.isDropping.putIfAbsent(player.name, false)
         if (PlayerData.isDropping[player.name] == true) {
             PlayerData.dropTime.compute(player.name, BiFunction<String?, Int?, Int?> compute@{ _: String?, v: Int? ->
                 if (v == null) {
