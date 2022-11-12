@@ -54,8 +54,8 @@ class Main : JavaPlugin(), Listener {
                 config.getBoolean("DetectionItem.Combat.Critical.CheckCritical")
             PluginConfig.detectionItemCombatReachSuspicionLevel =
                 config.getInt("DetectionItem.Combat.Reach.SuspicionLevel")
-            PluginConfig.detectionItemCombatCheckReach = config.getBoolean("DetectionItem.Combat.Reach.CheckReach")
-            PluginConfig.detectionItemCombatReach = config.getDouble("DetectionItem.Combat.Reach.Reach")
+            PluginConfig.detectionItemCombatCheckReach = config.getBoolean("DetectionItem.Combat.CheckReach")
+            PluginConfig.detectionItemCombatReach = config.getDouble("DetectionItem.Combat.Reach.Distance")
             PluginConfig.detectionItemCombatCheckCPS = config.getBoolean("DetectionItem.Combat.CPS.CheckCPS")
             PluginConfig.detectionItemCombatMaxCPS = config.getInt("DetectionItem.Combat.CPS.MaxCPS")
             PluginConfig.detectionItemCombatCPSSuspicionLevel = config.getInt("DetectionItem.Combat.CPS.SuspicionLevel")
@@ -73,6 +73,7 @@ class Main : JavaPlugin(), Listener {
         AntiCheatManager.registerDetectionItem(DropSpeed())
         //AntiCheatManager.registerDetectionItem(SafeWalk())
         AntiCheatManager.registerDetectionItem(KillAuraSimple())
+        AntiCheatManager.registerDetectionItem(Reach())
     }
 
     override fun onCommand(

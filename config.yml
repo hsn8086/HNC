@@ -106,7 +106,7 @@ DetectionItem.Combat.Critical.SuspicionLevel: 100
 #Reach
 #≥§±€‘≥
 DetectionItem.Combat.CheckReach: true
-DetectionItem.Combat.Reach: 3.39
+DetectionItem.Combat.Reach.Distance: 3.5
 
 DetectionItem.Combat.Reach.SuspicionLevel: 100
 

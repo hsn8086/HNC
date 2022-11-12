@@ -3,10 +3,8 @@ package com.github.hsn8086.anticheat.detectionItems
 import com.github.hsn8086.Utils
 import com.github.hsn8086.anticheat.DetectionItem
 import com.github.hsn8086.data.PluginConfig
-import org.bukkit.Bukkit
 import org.bukkit.World
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity
-import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import org.bukkit.event.entity.EntityDamageByEntityEvent
 import org.bukkit.util.Vector
@@ -15,15 +13,16 @@ import kotlin.math.max
 
 /**
  * @author hsn
- * @since 11/12/2022 1:24 下午
+ * @since 11/12/2022 3:48 下午
  * @version 1.0
  */
-class KillAuraSimple : DetectionItem() {
+class Reach : DetectionItem() {
+
     var count = HashMap<String, Int>()
 
     init {
-        suspicionLevel = PluginConfig.detectionItemCombatKillAuraSuspicionLevel
-        if (PluginConfig.detectionItemCombatKillAuraSimple) {
+        suspicionLevel = PluginConfig.detectionItemCombatReachSuspicionLevel
+        if (PluginConfig.detectionItemCombatCheckReach) {
             enable()
         } else {
             disable()
@@ -42,29 +41,24 @@ class KillAuraSimple : DetectionItem() {
         )
 
         count.putIfAbsent(player.name, 0)
-        if (count[player.name]!! > 75) {
+        if (count[player.name]!! > 750) {
             e.isCancelled = true
         }
 
-        val boundingBoxX=abs((e.entity as CraftEntity).handle.boundingBox.a-(e.entity as CraftEntity).handle.boundingBox.d)
-        val boundingBoxY=abs((e.entity as CraftEntity).handle.boundingBox.b-(e.entity as CraftEntity).handle.boundingBox.e)
-        val boundingBoxZ=abs((e.entity as CraftEntity).handle.boundingBox.c-(e.entity as CraftEntity).handle.boundingBox.f)
-
-        if (abs(Utils.getPlaneNormalVector(e.damager.location.direction).dot(damageVector)) > 4.5*max(boundingBoxX,boundingBoxZ)) {
-            if (count[player.name]!! < 100) {
-                count[player.name] = count[player.name]!! + 10
+        if (damageVector.length()>PluginConfig.detectionItemCombatReach) {
+            if (count[player.name]!! < 1000) {
+                count[player.name] = count[player.name]!! + 100
             }
 
-            return count[player.name]!! > 50
+            return count[player.name]!! > 500
         } else {
             if (count[player.name]!! > 0) {
-                count[player.name] = count[player.name]!! - 3
+                count[player.name] = count[player.name]!! - 20
             }
         }
 
         return false
     }
 
+
 }
-
-

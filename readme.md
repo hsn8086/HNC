@@ -16,13 +16,13 @@ In addition: the code is java to kotlin, there may be some problems.
 - Auto Click
 - High Jump
 - On-ground deception
+- Reach
+- Killing Aura
 
 ## Future:
 - Safe walk
 - Air acceleration
-- Killing Aura
 - Water Acceleration
-- Reach
 - Ascent Speed
 - Timer
 - WallClimb
