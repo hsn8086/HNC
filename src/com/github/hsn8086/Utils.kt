@@ -1,5 +1,6 @@
 package com.github.hsn8086
 
+import org.bukkit.util.Vector
 import java.util.*
 import kotlin.math.pow
 
@@ -41,5 +42,8 @@ object Utils {
             variance += (i!! - mean).pow(2.0)
         }
         return variance / array.size
+    }
+    fun getPlaneNormalVector(vector: Vector):Vector{
+        return Vector(vector.x,0.0,vector.z)
     }
 }

@@ -6,6 +6,8 @@ package com.github.hsn8086.data
  * @since 22-07-12 3:39
  */
 object PluginConfig {
+
+    var detectionItemCombatKillAuraSuspicionLevel: Int = 0
     var mainSuspicionLevelDecreaseRate: Int = 0
     var mainSuspicionLevelMax: Int = 0
     var mainSuspicionLevelBacktracking: Int = 0
@@ -36,6 +38,7 @@ object PluginConfig {
     var detectionItemCombatCheckCritical: Boolean = false
     var detectionItemCombatCheckReach: Boolean = false
     var detectionItemCombatCheckCPS: Boolean = false
+    var detectionItemCombatKillAuraSimple: Boolean = false
     var detectionItemDropMaxSpeed: Double = 0.0
     var detectionItemCombatReach: Double = 0.0
     var mainMode: String? = null

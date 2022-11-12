@@ -121,3 +121,5 @@ DetectionItem.Combat.CPS.SuspicionLevel: 100
 #KillAura
 #ɱ¾�⻷
 DetectionItem.Combat.KillAura.Simple: true
+
+DetectionItem.Combat.KillAura.SuspicionLevel: 300

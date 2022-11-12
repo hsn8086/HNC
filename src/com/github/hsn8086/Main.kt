@@ -59,6 +59,9 @@ class Main : JavaPlugin(), Listener {
             PluginConfig.detectionItemCombatCheckCPS = config.getBoolean("DetectionItem.Combat.CPS.CheckCPS")
             PluginConfig.detectionItemCombatMaxCPS = config.getInt("DetectionItem.Combat.CPS.MaxCPS")
             PluginConfig.detectionItemCombatCPSSuspicionLevel = config.getInt("DetectionItem.Combat.CPS.SuspicionLevel")
+
+            PluginConfig.detectionItemCombatKillAuraSimple=config.getBoolean("DetectionItem.Combat.KillAura.Simple")
+            PluginConfig.detectionItemCombatKillAuraSuspicionLevel=config.getInt("DetectionItem.Combat.KillAura.SuspicionLevel")
         }
         AntiCheatManager.clearDetectionItems()
         AntiCheatManager.registerDetectionItem(AutoClick())
@@ -69,6 +72,7 @@ class Main : JavaPlugin(), Listener {
         AntiCheatManager.registerDetectionItem(OnGround())
         AntiCheatManager.registerDetectionItem(DropSpeed())
         //AntiCheatManager.registerDetectionItem(SafeWalk())
+        AntiCheatManager.registerDetectionItem(KillAuraSimple())
     }
 
     override fun onCommand(
