@@ -3,11 +3,15 @@ package com.github.hsn8086.anticheat.detectionItems
 import com.github.hsn8086.Utils
 import com.github.hsn8086.anticheat.DetectionItem
 import com.github.hsn8086.data.PluginConfig
+import org.bukkit.Bukkit
 import org.bukkit.World
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity
+import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import org.bukkit.event.entity.EntityDamageByEntityEvent
 import org.bukkit.util.Vector
 import kotlin.math.abs
+import kotlin.math.max
 
 /**
  * @author hsn
@@ -38,10 +42,15 @@ class KillAuraSimple : DetectionItem() {
         )
 
         count.putIfAbsent(player.name, 0)
-        if (count[player.name]!! > 75){
-            e.isCancelled=true
+        if (count[player.name]!! > 75) {
+            e.isCancelled = true
         }
-        if (abs(Utils.getPlaneNormalVector(e.damager.location.direction).dot(damageVector)) > 2.6) {
+
+        val boundingBoxX=abs((e.entity as CraftEntity).handle.boundingBox.a-(e.entity as CraftEntity).handle.boundingBox.d)
+        val boundingBoxY=abs((e.entity as CraftEntity).handle.boundingBox.b-(e.entity as CraftEntity).handle.boundingBox.e)
+        val boundingBoxZ=abs((e.entity as CraftEntity).handle.boundingBox.c-(e.entity as CraftEntity).handle.boundingBox.f)
+
+        if (abs(Utils.getPlaneNormalVector(e.damager.location.direction).dot(damageVector)) > 4.5*max(boundingBoxX,boundingBoxZ)) {
             if (count[player.name]!! < 100) {
                 count[player.name] = count[player.name]!! + 10
             }
